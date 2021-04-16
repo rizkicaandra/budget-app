@@ -14,11 +14,10 @@ class BudgetController {
     
     Budget.create(newData)
     .then( response => {
-      console.log(response);
       res.status(201).json(response.dataValues)
     })
     .catch( err => {
-      console.log(err);
+      next(err)
     })  
   }
 
@@ -32,7 +31,7 @@ class BudgetController {
       res.status(200).json(response)
     })
     .catch( err => {
-      console.log(err)
+      next(err)
     })
   }
 
@@ -46,7 +45,7 @@ class BudgetController {
       res.status(200).json(response)
     })
     .catch( err => {
-      console.log(err)
+      next(err)
     })
   }
 
@@ -66,7 +65,7 @@ class BudgetController {
       }
     })
     .catch( err => {
-      console.log(err)
+      next(err)
     })
   }
 
@@ -98,7 +97,7 @@ class BudgetController {
       }
     })
     .catch( err => {
-      console.log(err)
+      next(err)
     })
   }
 
@@ -122,7 +121,7 @@ class BudgetController {
       }
     })
     .catch( err => {
-      console.log(err)
+      next(err)
     })
   }
 }

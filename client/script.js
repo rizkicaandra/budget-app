@@ -1,4 +1,6 @@
-const baseUrl = 'http://localhost:3000/'
+const baseUrl = 'https://budget-app-mc.herokuapp.com/'
+// local app
+// const baseUrl = 'http://localhost:3000/' 
 
 const modal = document.getElementById("myModal");
 const btn = document.getElementById("myBtn");

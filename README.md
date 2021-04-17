@@ -9,7 +9,7 @@ langkah :
 
 2. Budget Application
 
-DEMO APP bisa dilihat pada URL : 
+DEMO APP bisa dilihat pada URL : https://budget-app-533a8.web.app/
 
 - SERVER
 

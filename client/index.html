@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Budget App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Budget App</h1>
+    </div>
+    <div class="budget-section">
+      <div class="income col col-md col-sm" id="logoIncome">
+        <h2>income</h2>
+        <img src="image/money-bag.svg" width="40" alt="" />
+        <p class="amount">Rp <span id="incomeAmount">0</span></p>
+      </div>
+      <div class="expenses col col-md col-sm" id="logoExpenses">
+        <h2>expenses</h2>
+        <img src="image/accounting.svg" width="40" alt="" />
+        <p class="exp-amount">Rp <span id="expensesAmount">0</span></p>
+      </div>
+      <div class="balance col col-md col-sm">
+        <h2>balance</h2>
+        <img src="image/law.svg" width="40" alt="" />
+        <p class="balance bala">Rp <span id="balanceAmount">0</span></p>
+      </div>
+    </div>
+    <div id="displayIncome">
+      <div class="header-data">
+        <h2>Income Data</h2>
+      </div>
+      <div class="data-list">
+        <div class="col">
+          <h4>Name</h4>
+        </div>
+        <div class="col">
+          <h4>Amount</h4>
+        </div>
+        <div class="col">
+          <h4>Category</h4>
+        </div>
+        <div class="col"></div>
+      </div>
+      <div id="incmValue"></div>
+    </div>
+    <div id="displayExpenses">
+      <div class="header-data">
+        <h2>Expenses Data</h2>
+      </div>
+      <div class="data-list">
+        <div class="col">
+          <h4>Name</h4>
+        </div>
+        <div class="col">
+          <h4>Amount</h4>
+        </div>
+        <div class="col">
+          <h4>Category</h4>
+        </div>
+        <div class="col"></div>
+      </div>
+      <div id="expValue"></div>
+    </div>
+  </div>
+  <div class="toggle">
+    <button id="myBtn" type="button">+</button>
+  </div>
+
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h2>Budget App Form</h2>
+      </div>
+      <div class="modal-body">
+        <div class="add-form" id="addNewData">
+          <form id="addForm">
+            <label for=""> Name </label> <br />
+            <input type="text" id="name" /> <br />
+            <label for=""> Category </label> <br />
+            <select name="category" id="category">
+              <option value="" disabled selected>Select Category Data</option>
+              <option value="income">Income</option>
+              <option value="expenses">Expenses</option>
+            </select>
+            <br />
+            <label for=""> Amount </label> <br />
+            <input type="number" id="amount" /> <br />
+            <button type="submit">Add New Data</button>
+          </form>
+        </div>
+
+        <div class="edit-form" id="editForm">
+          <form action="" id="saveEdit">
+            <label for=""> Name </label> <br />
+            <input type="text" id="nameEdit" /> <br />
+            <label for=""> Category </label> <br />
+            <select name="category" id="categoryEdit">
+              <option value="" disabled selected>Select Category Data</option>
+              <option value="income">Income</option>
+              <option value="expenses">Expenses</option>
+            </select>
+            <br />
+            <label for=""> Amount </label> <br />
+            <input type="number" id="amountEdit" /> <br />
+            <button type="submit">Save changes</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

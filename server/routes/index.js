@@ -13,4 +13,6 @@ router.put('/budgets/:id', BudgetController.updateData)
 
 router.delete('/budgets/:id', BudgetController.deleteData)
 
+router.get('/balance', BudgetController.getBalance)
+
 module.exports = router

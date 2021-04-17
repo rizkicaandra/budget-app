@@ -124,6 +124,41 @@ class BudgetController {
       next(err)
     })
   }
+
+  static getBalance(req, res, next){
+    let balance = 0
+    let income = 0
+    let expenses = 0
+
+    Budget.findAll({
+      where:{
+        category: 'income'
+      }
+    })
+    .then(res => {
+      res.forEach(element => {
+        income += element.amount
+      });
+
+      return Budget.findAll({
+        where:{
+          category: 'expenses'
+        }
+      })
+    })
+    .then( exp => {
+      exp.forEach(data => {
+        expenses += data.amount
+      });
+
+      balance = income - expenses
+
+      res.status(200).json({ balance })
+    })
+    .catch( err => {
+      next(err)
+    })
+  }
 }
 
 module.exports = BudgetController

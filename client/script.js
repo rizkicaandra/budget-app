@@ -32,7 +32,6 @@ let totalExpenses = document.getElementById("expensesAmount")
 let balance = document.getElementById("balanceAmount")
 let tmpIncome = 0
 let tmpExpense = 0
-let tmpBalance = 0
 
 const incomeData = document.getElementById("displayIncome")
 const logoIncome = document.getElementById("logoIncome")
@@ -57,7 +56,8 @@ logoIncome.addEventListener("click", getIncomeData)
 logoExpenses.addEventListener("click", getExpensesData)
 
 // fetch income total
-fetch(baseUrl + 'incomes')
+function getTotalIncome(){
+  fetch(baseUrl + 'incomes')
   .then( res => res.json() )
   .then( data => {
     data.forEach(income => {
@@ -65,9 +65,11 @@ fetch(baseUrl + 'incomes')
     })
     totalIncome.innerHTML = tmpIncome
   })
+}
 
 // fetch expense total
-fetch(baseUrl + 'expenses')
+function getTotalExpenses(){
+  fetch(baseUrl + 'expenses')
   .then( res => res.json() )
   .then( data => {
     data.forEach(expenses => {
@@ -75,11 +77,22 @@ fetch(baseUrl + 'expenses')
     })
     totalExpenses.innerHTML = tmpExpense
   })
+}
+
+// fetch balance
+function getBalance(){
+  fetch(baseUrl + 'balance')
+  .then( res => res.json())
+  .then( data => {
+    balance.innerHTML = data.balance
+  })
+}
 
 // get all income data
 function getIncomeData() {
   incmValue.innerHTML = null
   tmpIncome = 0
+  tmpExpense = 0
   fetch(baseUrl + 'incomes')
   .then( res => res.json() )
   .then( data => {
@@ -97,9 +110,10 @@ function getIncomeData() {
         </div>
       </div>
       `
-      tmpIncome += Number(income.amount)
     });
-    totalIncome.innerHTML = tmpIncome
+    getTotalIncome()
+    getTotalExpenses()
+    getBalance()
   })
   incomeData.style.display = "block";
   expensesData.style.display = "none";
@@ -109,6 +123,7 @@ function getIncomeData() {
 function getExpensesData() {
   expValue.innerHTML = null
   tmpExpense = 0
+  tmpIncome = 0
   fetch(baseUrl + 'expenses')
   .then( res => res.json())
   .then( data => {
@@ -126,9 +141,10 @@ function getExpensesData() {
         </div>
       </div>
       `
-      tmpExpense += Number(expenses.amount)
     });
-    totalExpenses.innerHTML = tmpExpense
+    getTotalIncome()
+    getTotalExpenses()
+    getBalance()
   })
   expensesData.style.display = "block";
   incomeData.style.display = "none";
@@ -199,22 +215,6 @@ function editDataDetail(id) {
 
 // sumbit edit data
 function editData(id, name, amount, category){
-  if (!name.length) {
-    nameData.style.border = "1px solid #b80c09";
-    nameData.placeholder = "input can not be empty";
-    nameData.style.color = "#b80c09";
-  } 
-  
-  if (!amount.length){
-    amountData.style.border = "1px solid #b80c09";
-    amountData.placeholder = "input can not be empty";
-    amountData.style.color = "#b80c09";
-  } 
-  
-  if (!category.length) {
-    categoryData.style.border = "1px solid #b80c09";
-    categoryData.style.color = "#b80c09";
-  } else {
     fetch(baseUrl + 'budgets/' + id, {
       method: 'PUT',
       headers: {
@@ -242,7 +242,6 @@ function editData(id, name, amount, category){
     nameEdit.value = ""
     categoryEdit.value = ""
     amountEdit.value = ""
-  }
 }
 
 //delete data
@@ -269,3 +268,7 @@ saveEdit.addEventListener("submit", (e) => {
   e.preventDefault();
   editData(editedId,nameEdit.value, amountEdit.value, categoryEdit.value)
 });
+
+getTotalIncome()
+getTotalExpenses()
+getBalance()
